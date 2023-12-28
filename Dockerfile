@@ -1,4 +1,4 @@
-FROM rocker/r-ver:4.2.1
+FROM rocker/r2u:22.04
 
 RUN apt-get update && apt-get install -y \
     libxml2-dev \
