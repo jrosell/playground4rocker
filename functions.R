@@ -1,4 +1,9 @@
 print("functions.R")
+
+test_read <- function() {
+  raw <- readr::read_csv("https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2013.csv")
+  raw |> janitor::clean_names()
+}
 # clean_unemp() is a function inside a package I made. Because I don't want you to install
 # the package if you're following along, I'm simply sourcing it:
 clean_unemp <- function(unemp_data,
@@ -50,9 +55,8 @@ clean_unemp <- function(unemp_data,
 clean_data <- function(x){
   print("clean_data")
   print(x)
-  x %>%
-    janitor::clean_names() %>%
-    print(n = Inf) %>%
+  x |>
+    janitor::clean_names() |>
     mutate(level = case_when(
              grepl("Grand-D.*", commune) ~ "Country",
              grepl("Canton", commune) ~ "Canton",
@@ -64,7 +68,7 @@ clean_data <- function(x){
            commune = ifelse(grepl("Grand-D.*", commune),
                             stringr::str_remove_all(commune, "Grand-Duche de "),
                             commune),
-           ) %>%
+           ) |>
     select(year,
            place_name = commune,
            level,

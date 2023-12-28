@@ -7,6 +7,10 @@ source("functions.R")
 
 list(
     tar_target(
+        targets_test,
+        test_read()
+    ),
+    tar_target(
         unemp_data,
         get_data()
     ),
