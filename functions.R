@@ -49,8 +49,9 @@ clean_unemp <- function(unemp_data,
 # This is a helper function to clean the data
 clean_data <- function(x){
   print("clean_data")
+  print(x)
   x %>%
-    janitor::clean_names() %>%
+    janitor::make_clean_names() %>%
     mutate(level = case_when(
              grepl("Grand-D.*", commune) ~ "Country",
              grepl("Canton", commune) ~ "Canton",
