@@ -51,7 +51,8 @@ clean_data <- function(x){
   print("clean_data")
   print(x)
   x %>%
-    janitor::make_clean_names() %>%
+    janitor::clean_names() %>%
+    print(n = Inf) %>%
     mutate(level = case_when(
              grepl("Grand-D.*", commune) ~ "Country",
              grepl("Canton", commune) ~ "Canton",
