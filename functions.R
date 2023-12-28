@@ -42,7 +42,6 @@ get_data <- function(){
         "https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2015.csv",
         "https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2016.csv"
     )
-    print(urls)
     urls |>
         purrr::map(readr::read_csv) %>%
         purrr::map(clean_data) %>% 

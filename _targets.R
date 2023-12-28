@@ -1,4 +1,4 @@
-print("_targets.R")
+cat("_targets.R\n")
 library(targets)
 library(dplyr)
 library(ggplot2)
