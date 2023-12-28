@@ -1,49 +1,8 @@
-print("functions.R")
+cat("functions.R\n")
 
-test_read <- function() {
-  raw <- readr::read_csv("https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2013.csv")
-  raw |> janitor::clean_names()
-}
 # clean_unemp() is a function inside a package I made. Because I don't want you to install
 # the package if you're following along, I'm simply sourcing it:
-clean_unemp <- function(unemp_data,
-                        year_of_interest = NULL,
-                        place_name_of_interest = NULL,
-                        level_of_interest = NULL,
-                        col_of_interest){
-
-  if(is.null(year_of_interest)){
-
-    year_of_interest <- quo(year)
-
-  }
-
-  if(is.null(place_name_of_interest)){
-
-    place_name_of_interest <- quo(place_name)
-
-  }
-
-  if(is.null(level_of_interest)){
-
-    level_of_interest <- quo(level)
-
-  }
-
-  result <- unemp_data |>
-    janitor::clean_names() |>
-    dplyr::filter(year %in% !!year_of_interest,
-                  place_name %in% !!place_name_of_interest,
-                  level %in% !!level_of_interest) |>
-    dplyr::select(year, place_name, level, {{col_of_interest}})
-
-  if(nrow(result) == 0) {
-    warning("The returned data frame is empty. This is likely because the `place_name_of_interest` or `level_of_interest` argument supplied does not match any rows in the original data.")
-  }
-  result
-}
-
-
+source("https://raw.githubusercontent.com/b-rodrigues/myPackage/main/R/functions.R")
 
 # The cleaned data is also available in that same package. But again, because I don't want you
 # to install a package just for a blog post, here is the script to clean it.
@@ -53,9 +12,7 @@ clean_unemp <- function(unemp_data,
 
 # This is a helper function to clean the data
 clean_data <- function(x){
-  print("clean_data")
-  print("str")
-  print(str(x))
+  cat("clean_data\n")
   x |>
     janitor::clean_names() |>
     mutate(level = case_when(
@@ -78,7 +35,7 @@ clean_data <- function(x){
 
 # This reads in the data.
 get_data <- function(){
-    print("unemp_data")
+    cat("get_data\n")
     urls <- list(
         "https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2013.csv",
         "https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2014.csv",
@@ -94,6 +51,7 @@ get_data <- function(){
 
 # This plots the data
 make_plot <- function(data){
+  cat("make_plot\n")
   ggplot(data) +
     geom_col(
       aes(
