@@ -72,12 +72,14 @@ clean_data <- function(x){
 # This reads in the data.
 get_data <- function(){
   print("unemp_data")
-  list(
+  urls <- list(
     "https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2013.csv",
     "https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2014.csv",
     "https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2015.csv",
-    "https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2016.csv",
-  ) |>
+    "https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2016.csv"
+  )
+  print(urls)
+  urls |>
     purrr::map_dfr(readr::read_csv) %>%
     purrr::map_dfr(clean_data)
 }
