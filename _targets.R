@@ -58,19 +58,19 @@ list(
 
     tar_target(
         luxembourg_saved_plot,
-        save_plot("/home/fig/luxembourg.png", lux_plot),
+        save_plot("output/luxembourg.png", lux_plot),
         format = "file"
     ),
 
     tar_target(
         canton_saved_plot,
-        save_plot("/home/fig/canton.png", canton_plot),
+        save_plot("output/canton.png", canton_plot),
         format = "file"
     ),
 
     tar_target(
         commune_saved_plot,
-        save_plot("/home/fig/commune.png", commune_plot),
+        save_plot("output/commune.png", commune_plot),
         format = "file"
     )
 

@@ -54,7 +54,8 @@ clean_unemp <- function(unemp_data,
 # This is a helper function to clean the data
 clean_data <- function(x){
   print("clean_data")
-  print(x)
+  print("str")
+  print(str(x))
   x |>
     janitor::clean_names() |>
     mutate(level = case_when(
@@ -77,17 +78,18 @@ clean_data <- function(x){
 
 # This reads in the data.
 get_data <- function(){
-  print("unemp_data")
-  urls <- list(
-    "https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2013.csv",
-    "https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2014.csv",
-    "https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2015.csv",
-    "https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2016.csv"
-  )
-  print(urls)
-  urls |>
-    purrr::map_dfr(readr::read_csv) %>%
-    purrr::map_dfr(clean_data)
+    print("unemp_data")
+    urls <- list(
+        "https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2013.csv",
+        "https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2014.csv",
+        "https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2015.csv",
+        "https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2016.csv"
+    )
+    print(urls)
+    urls |>
+        purrr::map(readr::read_csv) %>%
+        purrr::map(clean_data) %>% 
+        purrr::list_rbind()
 }
 
 # This plots the data

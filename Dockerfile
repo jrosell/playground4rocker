@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN R -e "install.packages(c('dplyr', 'purrr', 'curl', 'readr', 'stringr', 'ggplot2', 'janitor', 'targets'))"
 
-RUN mkdir /home/fig
+RUN mkdir /output
 
 COPY _targets.R /_targets.R
 

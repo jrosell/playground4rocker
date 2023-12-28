@@ -12,8 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - run: docker build -t my-image-name .
-    - run: docker run --rm --name my_pipeline_container -v /github/workspace/fig/:/home/fig/:rw my-image-name
+    - run: docker run --rm --name my_pipeline_container -v /github/workspace/output/:/output/:rw my-image-name
     - uses: actions/upload-artifact@v3
       with:
-        name: my-figures
-        path: /github/workspace/fig/
+        path: /github/workspace/output/
