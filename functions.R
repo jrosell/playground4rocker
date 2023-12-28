@@ -1,7 +1,43 @@
 # clean_unemp() is a function inside a package I made. Because I don't want you to install
 # the package if you're following along, I'm simply sourcing it:
+clean_unemp <- function(unemp_data,
+                        year_of_interest = NULL,
+                        place_name_of_interest = NULL,
+                        level_of_interest = NULL,
+                        col_of_interest){
 
-source("https://raw.githubusercontent.com/b-rodrigues/myPackage/main/R/functions.R")
+  if(is.null(year_of_interest)){
+
+    year_of_interest <- quo(year)
+
+  }
+
+  if(is.null(place_name_of_interest)){
+
+    place_name_of_interest <- quo(place_name)
+
+  }
+
+  if(is.null(level_of_interest)){
+
+    level_of_interest <- quo(level)
+
+  }
+
+  result <- unemp_data |>
+    janitor::clean_names() |>
+    dplyr::filter(year %in% !!year_of_interest,
+                  place_name %in% !!place_name_of_interest,
+                  level %in% !!level_of_interest) |>
+    dplyr::select(year, place_name, level, {{col_of_interest}})
+
+  if(nrow(result) == 0) {
+    warning("The returned data frame is empty. This is likely because the `place_name_of_interest` or `level_of_interest` argument supplied does not match any rows in the original data.")
+  }
+  result
+}
+
+
 
 # The cleaned data is also available in that same package. But again, because I don't want you
 # to install a package just for a blog post, here is the script to clean it.
