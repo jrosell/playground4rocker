@@ -48,6 +48,7 @@ clean_unemp <- function(unemp_data,
 
 # This is a helper function to clean the data
 clean_data <- function(x){
+  print("clean_data")
   x %>%
     janitor::clean_names() %>%
     mutate(level = case_when(
@@ -70,6 +71,7 @@ clean_data <- function(x){
 
 # This reads in the data.
 get_data <- function(){
+  print("unemp_data")
   list(
     "https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2013.csv",
     "https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2014.csv",
