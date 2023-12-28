@@ -1,3 +1,4 @@
+print("functions.R")
 # clean_unemp() is a function inside a package I made. Because I don't want you to install
 # the package if you're following along, I'm simply sourcing it:
 clean_unemp <- function(unemp_data,
