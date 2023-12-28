@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y \
     libglpk-dev \
     libxt-dev
 
-RUN R -e "install.packages(c('dplyr', 'purrr', 'readr', 'stringr', 'ggplot2', 'janitor', 'targets'))"
+RUN R -e "install.packages(c('dplyr', 'purrr', 'curl', 'readr', 'stringr', 'ggplot2', 'janitor', 'targets'))"
 
 RUN mkdir /home/fig
 
