@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - run: docker build -t my-image-name .
-    - run: docker run --rm --name my_pipeline_container -v /github/workspace/output/:/workspace/output/:rw my-image-name
+    - run: docker build -f renv.Dockerfile -t my-renv-name .
+    - run: docker run --rm --name my_renv_container -v /github/workspace/output/:/workspace/output/:rw my-renv-name
     - uses: actions/upload-artifact@v3
       with:
         path: /github/workspace/output/
