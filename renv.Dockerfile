@@ -5,7 +5,8 @@ WORKDIR /workspace
 RUN R -e "install.packages(c('renv'))"
 COPY renv.lock renv.lock
 RUN mkdir -p renv
-COPY .Rprofile .Rprofile
+
+RUN echo 'source("renv/activate.R")' >> .Rprofile
 COPY renv/activate.R renv/activate.R
 COPY renv/settings.json renv/settings.json
 RUN mkdir renv/cache

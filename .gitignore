@@ -47,3 +47,6 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# Generated dinamically from renv.Dockerfile
+.Rprofile
