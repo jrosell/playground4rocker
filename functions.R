@@ -43,7 +43,7 @@ get_data <- function(){
         "https://raw.githubusercontent.com/b-rodrigues/modern_R/master/datasets/unemployment/unemp_2016.csv"
     )
     urls |>
-        purrr::map(readr::read_csv) %>%
+        purrr::map(readr::read_csv, show_col_types = FALSE) %>%
         purrr::map(clean_data) %>% 
         purrr::list_rbind()
 }

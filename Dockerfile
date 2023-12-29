@@ -1,9 +1,13 @@
 FROM rocker/r2u:22.04
 
-RUN R -e "install.packages(c('dplyr', 'purrr', 'curl', 'readr', 'stringr', 'ggplot2', 'janitor', 'targets'))"
+WORKDIR /workspace
 
-RUN mkdir /output
+RUN R -e "install.packages(c('dplyr', 'purrr', 'curl', 'readr', 'stringr', 'ggplot2', 'janitor', 'targets', 'renv'))"
 
-COPY _targets.R functions.R /
+COPY _targets.R functions.R /workspace
 
-CMD R -e "sessionInfo(); targets::tar_make();"
+CMD R -e "sessionInfo(); \
+list.files(); \
+# options(renv.config.dependencies.limit = Inf);  \
+renv::snapshot(lockfile = 'output/renv.lock'); \
+targets::tar_make();"
