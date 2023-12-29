@@ -2,9 +2,9 @@
 
 ## Github Actions
 
-With [.github/workflows/main.yml](.github/workflows/main.yml) last R package versions are used (faster but unsafer).
+With [.github/workflows/last.yml](.github/workflows/last.yml) last R package versions are used. ETA 1 min (faster but unsafer).
 
-With [.github/workflows/renv.yml](.github/workflows/renv.yml) locked R packave versions are used (slower but more reproducible).
+With [.github/workflows/renv.yml](.github/workflows/renv.yml) locked R packave versions are used. ETA 16 min (slower but more reproducible).
 
 The output files will be uploaded as an artifact zip of the executed jobs.
 
