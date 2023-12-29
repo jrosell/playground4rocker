@@ -1,4 +1,6 @@
-# playground
+# playground4rocker
+
+Here I'm interested in the github actions and docker deployment workflows. So, for the functions.R and _targets.R files, I used and updated the code from https://www.brodrigues.co/blog/2022-11-19-raps/ by @b-rodrigues An example can also be seen here https://github.com/b-rodrigues/dockerized_pipeline_demo
 
 ## Github Actions
 
@@ -13,9 +15,9 @@ The output files will be uploaded as an artifact zip of the executed jobs.
 First clone the repository in your computer:
 
 ```         
-$ git clone https://github.com/jrosell/playground
+$ git clone git@github.com:jrosell/playground4rocker.git
 
-$ cd playground
+$ cd playground4rocker
 ```
 
 Then build the image and run the container.

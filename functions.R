@@ -1,5 +1,9 @@
 cat("functions.R\n")
 
+# Here I'm interested in the github actions and docker deployment workflows.
+# So, I used and updated the code from https://www.brodrigues.co/blog/2022-11-19-raps/ by @b-rodrigues
+# An example can also be seen here https://github.com/b-rodrigues/dockerized_pipeline_demo
+
 # clean_unemp() is a function inside a package I made. Because I don't want you to install
 # the package if you're following along, I'm simply sourcing it:
 source("https://raw.githubusercontent.com/b-rodrigues/myPackage/main/R/functions.R")

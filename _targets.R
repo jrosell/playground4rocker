@@ -1,4 +1,9 @@
 cat("_targets.R\n")
+
+# Here I'm interested in the github actions and docker deployment workflows.
+# So, I used and updated the code from https://www.brodrigues.co/blog/2022-11-19-raps/ by @b-rodrigues
+# An example can also be seen here https://github.com/b-rodrigues/dockerized_pipeline_demo
+
 library(targets)
 library(dplyr)
 library(ggplot2)
