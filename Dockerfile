@@ -8,6 +8,4 @@ COPY _targets.R functions.R /workspace
 
 CMD R -e "sessionInfo(); \
 list.files(); \
-# options(renv.config.dependencies.limit = Inf);  \
-renv::snapshot(lockfile = 'output/renv.lock'); \
 targets::tar_make();"
