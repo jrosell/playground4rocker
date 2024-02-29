@@ -9,10 +9,11 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
     && rm -f Miniconda3-latest-Linux-x86_64.sh \
     && PATH="/root/miniconda/bin:$PATH" \
     && conda install r-base r-dplyr r-purrr r-readr r-stringr r-ggplot2 r-janitor r-targets r-curl -y --quiet --channel=conda-forge
+    && conda config --set auto_activate_base true
 
 WORKDIR /workspace
 COPY _targets.R functions.R /workspace/
 
-CMD R -e "sessionInfo(); \
+CMD bash R -e "sessionInfo(); \
 list.files(); \
 targets::tar_make();"
