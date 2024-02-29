@@ -1,16 +1,29 @@
 # playground4rocker
 
-Here I'm interested in the github actions and docker deployment workflows. So, for the functions.R and _targets.R files, I used and updated the code from https://www.brodrigues.co/blog/2022-11-19-raps/ by @b-rodrigues An example can also be seen here https://github.com/b-rodrigues/dockerized_pipeline_demo
+In this repo there are multiple github actions and docker deployment workflows available. 
+
+I tested to run [R code](https://www.brodrigues.co/blog/2022-11-19-raps/) using different approaches. The output files are uploaded as an artifact zip of the executed jobs.
 
 ## Github Actions
 
-With [.github/workflows/last.yml](.github/workflows/last.yml) last R package versions are used. ETA 1 min (faster but unsafer).
+Results:
 
-With [.github/workflows/renv.yml](.github/workflows/renv.yml) locked R packave versions are used. ETA 16 min (slower but more reproducible).
+* With [.github/workflows/r2u.yml](.github/workflows/r2u.yml), last R package versions with r2u are used. ETA 49s.
 
-The output files will be uploaded as an artifact zip of the executed jobs.
+* With [.github/workflows/pak.yml](.github/workflows/pak.yml), last R package versions with pak are used. ETA 1m 18s.
 
-## Run in local Docker container
+* With [.github/workflows/conda.yml](.github/workflows/conda.yml), last R package versions with conda are used. ETA 1m 25s.
+
+* With [.github/workflows/renv.yml](.github/workflows/renv.yml), locked R package versions with renv are used. ETA 12m 24s (slower but more reproducible).
+
+Conclusions:
+
+* When using Ubuntu, r2u is the fastest approach to run the code with the last R package versions. 
+* When not using Ubuntu, pak or conda approaches can be used to run the code with the last R package versions. 
+* When requiring specific versions, renv approach can be used. It will be slower but more reproducible.
+
+
+## How to build images and run containers locally
 
 First clone the repository in your computer:
 
@@ -20,18 +33,30 @@ $ git clone git@github.com:jrosell/playground4rocker.git
 $ cd playground4rocker
 ```
 
-Then build the image and run the container.
-
--   Last R package versions in a local computer (faster but unsafer):
+Then run the R code with the fastest approach this way:
 
 ```         
-$ docker build -t my-image-name . && docker run --rm -u $(id -u):$(id -g) --name my_pipeline_container -v $(pwd)/output:/workspace/output/:rw my-image-name
+$ docker build -f r2u.Dockerfile -t my-r2u-name . \
+  && docker run --name my_r2u_container --rm  -v $(pwd)/output:/workspace/output/:rw  my-r2u-name
 ```
 
--   Run specific R package versions in a local computer (slower but reproducible):
+Alternatively, you can run R code with the more reproducible but slow approach this way:
 
 ```         
-$ docker build -f renv.Dockerfile -t my-renv-name . && docker run --rm -u $(id -u):$(id -g) --name my_renv_container -v $(pwd)/output:/workspace/output/:rw my-renv-name
+$ docker build -f renv.Dockerfile -t my-renv-name .  \
+  && docker run --name my_renv_container --rm -v $(pwd)/output:/workspace/output/:rw my-renv-name
 ```
 
-It will use the renv.lock in your root folder.
+If you have added Python code and need to run both R and Python code, you can use this version:
+
+```  
+$ docker build -f conda.Dockerfile -t my-conda-name . \
+  && docker run --name my_conda_container --rm -v $(pwd)/output:/workspace/output/:rw my-conda-name
+```  
+
+## Follow up
+
+Feedback is welcome:
+
+* Suggestions? Bugs? You can open an issue.
+* You can fork this repo an reuse it. I'm open to PR too.
