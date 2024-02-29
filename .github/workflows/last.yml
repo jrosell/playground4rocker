@@ -10,9 +10,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - run: docker build -t my-image-name .
     - run: docker run --rm --name my_pipeline_container -v /github/workspace/output/:/workspace/output/:rw my-image-name
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         path: /github/workspace/output/

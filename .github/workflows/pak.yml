@@ -10,9 +10,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - run: docker build -f pak.Dockerfile -t my-pak-name .
     - run: docker run --rm --name my_pak_container -v /github/workspace/output/:/workspace/output/:rw my-pak-name
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         path: /github/workspace/output/
