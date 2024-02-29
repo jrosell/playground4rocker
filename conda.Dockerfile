@@ -14,6 +14,4 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
 WORKDIR /workspace
 COPY _targets.R functions.R /workspace/
 
-CMD bash R -e "sessionInfo(); \
-list.files(); \
-targets::tar_make();"
+CMD bash -c "R -e 'sessionInfo(); list.files(); targets::tar_make();'"
