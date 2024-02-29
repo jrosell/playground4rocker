@@ -1,4 +1,4 @@
-name: conda R packages
+name: Last version R packages using conda
 
 on:
   push:

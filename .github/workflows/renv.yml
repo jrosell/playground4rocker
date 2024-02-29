@@ -1,4 +1,4 @@
-name: Locked version R packages
+name: Locked version R packages using renv
 
 on:
   push:

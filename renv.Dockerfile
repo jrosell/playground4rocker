@@ -13,7 +13,7 @@ RUN mkdir renv/cache
 ENV RENV_PATHS_CACHE renv/cache
 RUN R -e "renv::restore()"
 
-COPY _targets.R functions.R /workspace
+COPY _targets.R functions.R /workspace/
 
 CMD R -e "sessionInfo(); \
 list.files(); \
