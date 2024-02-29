@@ -8,7 +8,7 @@ RUN wget \
 RUN conda install r-base r-dplyr r-purrr r-purrr r-readr r-stringr r-ggplot2 r-janitor r-targets r-curl -y --quiet --channel=conda-forge
 
 WORKDIR /workspace
-COPY _targets.R functions.R /workspace
+COPY _targets.R functions.R
 
 CMD R -e "sessionInfo(); \
 list.files(); \
