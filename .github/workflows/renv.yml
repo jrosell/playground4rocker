@@ -1,4 +1,4 @@
-name: Locked R packages
+name: Locked version R packages
 
 on:
   push:

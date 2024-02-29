@@ -8,7 +8,7 @@ RUN apt-get install -y wget && rm -rf /var/lib/apt/lists/* \
     && conda install r-base r-dplyr r-purrr r-purrr r-readr r-stringr r-ggplot2 r-janitor r-targets r-curl -y --quiet --channel=conda-forge
 
 WORKDIR /workspace
-COPY _targets.R functions.R
+COPY _targets.R functions.R /workspace
 
 CMD R -e "sessionInfo(); \
 list.files(); \
