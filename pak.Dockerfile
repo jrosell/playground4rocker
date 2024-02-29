@@ -4,7 +4,7 @@ WORKDIR /workspace
 
 RUN R -e "install.packages('pak');pak::pak(c('dplyr', 'purrr', 'curl', 'readr', 'stringr', 'ggplot2', 'janitor', 'targets'))"
 
-COPY _targets.R functions.R /workspace
+COPY _targets.R functions.R
 
 CMD R -e "sessionInfo(); \
 list.files(); \
